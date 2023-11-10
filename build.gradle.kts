@@ -39,7 +39,19 @@ intellij {
 tasks {
 
     generateLexer {
-        sourceFile.set(file("src/main/grammars"))
+        sourceFile.set(file("src/main/grammars/MLIRLexer.flex"))
+        targetDir.set("src/gen/com/kingkiller/mlir/lexer")
+        targetClass.set("_MLIRLexer")
+        purgeOldFiles.set(true)
+    }
+
+    generateParser {
+        sourceFile.set(file("src/main/grammars/MLIRParser.bnf"))
+        targetRoot.set("src/gen")
+        pathToParser.set("com/kingkiller/mlir/parser/MLIRParser.java")
+        pathToPsiRoot.set("com/kingkiller/mlir/psi")
+        purgeOldFiles.set(true)
+//        classpath(project(":$grammarKitFakePsiDeps"))
     }
 
     // Set the JVM compatibility versions
